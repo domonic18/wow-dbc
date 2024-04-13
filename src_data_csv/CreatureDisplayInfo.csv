@@ -24339,6 +24339,7 @@ ID,ModelID,SoundID,ExtendedDisplayInfoID,CreatureModelScale,CreatureModelAlpha,T
 140141,104141,0,0,1,255,elitehippogryph,elitehippogryph,elitehippogryph,,1,0,47,0,0,0
 140142,104142,0,0,1,255,elitewyvern,elitewyvern,elitewyvern,,1,0,47,0,0,0
 140143,104143,0,0,1,255,elitewyvernskin,elitewyvernskin,elitewyvernskin,,1,0,47,0,0,0
+140145,140145,0,0,1,255,encrypted08,encrypted08,encrypted08,,1,0,47,0,0,0
 140146,104146,0,0,1,255,armorreflect4,armorreflect4,armorreflect4,,1,0,47,0,0,0
 140152,104152,0,0,1,255,FaerieDragonMount01,FaerieDragonMount01,FaerieDragonMount01,,1,0,47,0,0,0
 140158,104158,0,0,1,255,felhound3_fire_mount,felhound3_fire_mount,felhound3_fire_mount,,1,0,47,0,0,0
@@ -24348,7 +24349,10 @@ ID,ModelID,SoundID,ExtendedDisplayInfoID,CreatureModelScale,CreatureModelAlpha,T
 140166,104166,0,0,1,255,firehawk_bodyflamered,firehawk_bodyflamered,firehawk_bodyflamered,,1,0,47,0,0,0
 140167,104167,0,0,1,255,firehawk_bodyflamegreen,firehawk_bodyflamegreen,firehawk_bodyflamegreen,,1,0,47,0,0,0
 140168,104168,0,0,1,255,FireRavenGodMountRed1,FireRavenGodMountRed1,FireRavenGodMountRed1,,1,0,47,0,0,0
+140169,140169,0,0,1,255,FishMount,FishMount,FishMount,,1,0,47,0,0,0
 140170,104170,0,0,1,255,flyingcarpet_2,flyingcarpet_2,flyingcarpet_2,,1,0,47,0,0,0
+104175,104175,0,0,1,255,ghostlycharger,ghostlycharger,ghostlycharger,,1,0,47,0,0,0
+104176,104176,0,0,1,255,ghostlymoosemount,ghostlymoosemount,ghostlymoosemount,,1,0,47,0,0,0
 140178,104178,0,0,1,255,GiantBoarMountFel1,GiantBoarMountFel1,GiantBoarMountFel1,,1,0,47,0,0,0
 140193,104193,0,0,1,255,goatspots,goatspots,goatspots,,1,0,47,0,0,0
 140195,104195,0,0,1,255,goblinheadmech,goblinheadmech,goblinheadmech,,1,0,47,0,0,0
@@ -24356,6 +24360,9 @@ ID,ModelID,SoundID,ExtendedDisplayInfoID,CreatureModelScale,CreatureModelAlpha,T
 140212,104212,0,0,1,255,hoptallus1,hoptallus1,hoptallus1,,1,0,47,0,0,0
 140228,104228,0,0,1,255,hovercraftmount_original,hovercraftmount_red,hovercraftmount_green,,1,0,47,0,0,0
 140229,104229,0,0,1,255,hunterkillership_body_yellow,hunterkillership_body_yellow,hunterkillership_body_yellow,,1,0,47,0,0,0
+104243,104243,0,0,1,255,kezancrowdpummeler_gold,kezancrowdpummeler_gold,kezancrowdpummeler_gold,,1,0,47,0,0,0
+104246,104246,0,0,1,255,lavahorseglow,lavahorseglow,lavahorseglow,,1,0,47,0,0,0
+140253,140253,0,0,1,255,Magemount_Frost,Magemount_Frost,Magemount_Frost,,1,0,47,0,0,0
 140264,104264,0,0,1,255,mechacycle_bronze,mechacycle_bronze,mechacycle_bronze,,1,0,47,0,0,0
 140267,104267,0,0,1,255,mechagonspidertank_silver,mechagonspidertank_silver,mechagonspidertank_silver,,1,0,47,0,0,0
 140272,104272,0,0,1,255,monkmount_jade,monkmount_jade,monkmount_jade,,1,0,47,0,0,0
