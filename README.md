@@ -19,8 +19,8 @@
 | `src/csv/*.csv` | ✅ | DBC源数据（核心资产） |
 | `tools/` | ✅ | 构建工具与脚本 |
 | `docs/` | ✅ | 项目文档 |
-| `creature/` | ❌ | 坐骑模型资源（~802MB），通过Release/网盘分发 |
-| `interface/` | ❌ | 图标资源（~181MB），通过Release/网盘分发 |
+| `assets/creature/` | ❌ | 坐骑模型资源（~802MB），通过Release/网盘分发 |
+| `assets/interface/` | ❌ | 图标资源（~181MB），通过Release/网盘分发 |
 | `build/DBFilesClient/*.dbc` | ❌ | DBC构建产物，通过CI自动生成 |
 | `*.mpq` | ❌ | 最终补丁包，通过Release分发 |
 
@@ -31,12 +31,13 @@ patch_project_lokta/
 ├── 📁 .github/workflows/      # GitHub Actions CI/CD 工作流
 ├── 📁 docs/                   # 项目文档
 │   └── dbc-management-proposal.md
-├── 📁 src_data_csv/           # CSV源数据（待迁移至 src/csv/）
-│   ├── Achievement.csv
-│   ├── CreatureDisplayInfo.csv
-│   ├── Item.csv
-│   ├── Spell.csv
-│   └── ...
+├── 📁 src/
+│   └── 📁 csv/                # CSV源数据
+│       ├── Achievement.csv
+│       ├── CreatureDisplayInfo.csv
+│       ├── Item.csv
+│       ├── Spell.csv
+│       └── ...
 ├── 📄 assets-manifest.json    # 资源清单（版本、校验和、下载链接）
 ├── 📄 .gitignore              # Git忽略规则
 └── 📄 README.md               # 本文件
@@ -53,7 +54,7 @@ cd patch_project_lokta
 
 ### 2. 下载资源文件
 
-由于 `creature/` 和 `interface/` 为大型二进制资源，**不纳入Git管理**，请通过以下方式获取：
+由于 `assets/creature/` 和 `assets/interface/` 为大型二进制资源，**不纳入Git管理**，请通过以下方式获取：
 
 #### 方式A：GitHub Release（推荐，海外网络）
 
@@ -76,11 +77,12 @@ unzip interface-v1.0.0.zip
 
 ```
 patch_project_lokta/
-├── 📁 src_data_csv/           # CSV源数据 ← Git管理
-├── 📁 creature/               # 坐骑模型 ← 从Release/网盘获取
-├── 📁 interface/              # 图标资源 ← 从Release/网盘获取
-└── 📁 build/                  # 构建输出（运行时生成）
-    └── DBFilesClient/         # 生成的DBC文件
+├── 📁 src/csv/                  # CSV源数据 ← Git管理
+├── 📁 assets/
+│   ├── 📁 creature/             # 坐骑模型 ← 从Release/网盘获取
+│   └── 📁 interface/            # 图标资源 ← 从Release/网盘获取
+└── 📁 build/                    # 构建输出（运行时生成）
+    └── DBFilesClient/           # 生成的DBC文件
 ```
 
 ### 4. 构建DBC（待接入转换工具）
@@ -101,8 +103,8 @@ python tools/csv-to-dbc/converter.py --all
 
 | 资源 | 大小 | 文件数 | 说明 |
 |:---|:---|:---|:---|
-| `creature/` | ~802 MB | 3,380 | 约170种自定义坐骑模型（.m2/.skin/.blp/.anim） |
-| `interface/` | ~181 MB | 25,845 | 图标文件（.blp）及索引（icon_inv.txt / icon_spell.txt） |
+| `assets/creature/` | ~802 MB | 3,380 | 约170种自定义坐骑模型（.m2/.skin/.blp/.anim） |
+| `assets/interface/` | ~181 MB | 25,845 | 图标文件（.blp）及索引（icon_inv.txt / icon_spell.txt） |
 
 ## 变更记录
 
@@ -119,7 +121,7 @@ python tools/csv-to-dbc/converter.py --all
 
 1. Fork 本仓库
 2. 创建特性分支：`git checkout -b feature/xxx`
-3. 编辑 `src_data_csv/*.csv` 文件
+3. 编辑 `src/csv/*.csv` 文件
 4. 提交变更（遵循 Conventional Commits 规范）
 5. 发起 Pull Request
 

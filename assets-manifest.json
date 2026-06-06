@@ -8,7 +8,7 @@
   "assets": {
     "creature": {
       "description": "自定义坐骑与生物模型资源",
-      "local_path": "creature/",
+      "local_path": "assets/creature/",
       "total_size_mb": 802,
       "file_count": 3380,
       "file_types": {
@@ -35,7 +35,7 @@
     },
     "interface": {
       "description": "界面图标资源",
-      "local_path": "interface/",
+      "local_path": "assets/interface/",
       "total_size_mb": 181,
       "file_count": 25845,
       "file_types": {
