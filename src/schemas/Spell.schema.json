@@ -1,0 +1,841 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Spell Schema",
+  "description": "魔兽世界 Spell.dbc 字段定义 (版本 3.3.5.12340)",
+  "source": "https://github.com/wowdev/WoWDBDefs",
+  "table_name": "Spell",
+  "version": "3.3.5.12340",
+  "type": "object",
+  "properties": {
+    "ID": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false,
+      "annotation": [
+        "id"
+      ]
+    },
+    "Category": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false,
+      "foreign_key": {
+        "table": "SpellCategory",
+        "column": "ID"
+      }
+    },
+    "DispelType": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false,
+      "foreign_key": {
+        "table": "SpellDispelType",
+        "column": "ID"
+      }
+    },
+    "Mechanic": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false,
+      "foreign_key": {
+        "table": "SpellMechanic",
+        "column": "ID"
+      }
+    },
+    "Attributes": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "AttributesEx": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "AttributesExB": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "AttributesExC": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "AttributesExD": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "AttributesExE": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "AttributesExF": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "AttributesExG": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "ShapeshiftMask": {
+      "type": "int",
+      "description": "",
+      "array_size": 2,
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "ShapeshiftExclude": {
+      "type": "int",
+      "description": "",
+      "array_size": 2,
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "Targets": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "TargetCreatureType": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "RequiresSpellFocus": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false,
+      "foreign_key": {
+        "table": "SpellFocusObject",
+        "column": "ID"
+      }
+    },
+    "FacingCasterFlags": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "CasterAuraState": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "TargetAuraState": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "ExcludeCasterAuraState": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "ExcludeTargetAuraState": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "CasterAuraSpell": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "TargetAuraSpell": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "ExcludeCasterAuraSpell": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "ExcludeTargetAuraSpell": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "CastingTimeIndex": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false,
+      "foreign_key": {
+        "table": "SpellCastTimes",
+        "column": "ID"
+      }
+    },
+    "RecoveryTime": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "CategoryRecoveryTime": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "InterruptFlags": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "AuraInterruptFlags": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "ChannelInterruptFlags": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "ProcTypeMask": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "ProcChance": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "ProcCharges": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "MaxLevel": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "BaseLevel": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "SpellLevel": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "DurationIndex": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false,
+      "foreign_key": {
+        "table": "SpellDuration",
+        "column": "ID"
+      }
+    },
+    "PowerType": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "ManaCost": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "ManaCostPerLevel": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "ManaPerSecond": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "ManaPerSecondPerLevel": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "RangeIndex": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "Speed": {
+      "type": "float",
+      "description": ""
+    },
+    "ModalNextSpell": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "CumulativeAura": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "Totem": {
+      "type": "int",
+      "description": "",
+      "array_size": 2,
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "Reagent": {
+      "type": "int",
+      "description": "",
+      "array_size": 8,
+      "int_width": 32,
+      "is_unsigned": false,
+      "foreign_key": {
+        "table": "Item",
+        "column": "ID"
+      }
+    },
+    "ReagentCount": {
+      "type": "int",
+      "description": "",
+      "array_size": 8,
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "EquippedItemClass": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "EquippedItemSubclass": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "EquippedItemInvTypes": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "Effect": {
+      "type": "int",
+      "description": "",
+      "array_size": 3,
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "EffectDieSides": {
+      "type": "int",
+      "description": "",
+      "array_size": 3,
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "EffectRealPointsPerLevel": {
+      "type": "float",
+      "description": "",
+      "array_size": 3
+    },
+    "EffectBasePoints": {
+      "type": "int",
+      "description": "",
+      "array_size": 3,
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "EffectMechanic": {
+      "type": "int",
+      "description": "",
+      "array_size": 3,
+      "int_width": 32,
+      "is_unsigned": false,
+      "foreign_key": {
+        "table": "SpellMechanic",
+        "column": "ID"
+      }
+    },
+    "ImplicitTargetA": {
+      "type": "int",
+      "description": "",
+      "array_size": 3,
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "ImplicitTargetB": {
+      "type": "int",
+      "description": "",
+      "array_size": 3,
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "EffectRadiusIndex": {
+      "type": "int",
+      "description": "",
+      "array_size": 3,
+      "int_width": 32,
+      "is_unsigned": false,
+      "foreign_key": {
+        "table": "SpellRadius",
+        "column": "ID"
+      }
+    },
+    "EffectAura": {
+      "type": "int",
+      "description": "",
+      "array_size": 3,
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "EffectAuraPeriod": {
+      "type": "int",
+      "description": "",
+      "array_size": 3,
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "EffectAmplitude": {
+      "type": "float",
+      "description": "",
+      "array_size": 3
+    },
+    "EffectChainTargets": {
+      "type": "int",
+      "description": "",
+      "array_size": 3,
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "EffectItemType": {
+      "type": "int",
+      "description": "",
+      "array_size": 3,
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "EffectMiscValue": {
+      "type": "int",
+      "description": "",
+      "array_size": 3,
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "EffectMiscValueB": {
+      "type": "int",
+      "description": "",
+      "array_size": 3,
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "EffectTriggerSpell": {
+      "type": "int",
+      "description": "",
+      "array_size": 3,
+      "int_width": 32,
+      "is_unsigned": false,
+      "foreign_key": {
+        "table": "Spell",
+        "column": "ID"
+      }
+    },
+    "EffectPointsPerCombo": {
+      "type": "float",
+      "description": "",
+      "array_size": 3
+    },
+    "EffectSpellClassMaskA": {
+      "type": "int",
+      "description": "",
+      "array_size": 3,
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "EffectSpellClassMaskB": {
+      "type": "int",
+      "description": "",
+      "array_size": 3,
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "EffectSpellClassMaskC": {
+      "type": "int",
+      "description": "",
+      "array_size": 3,
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "SpellVisualID": {
+      "type": "int",
+      "description": "",
+      "array_size": 2,
+      "int_width": 32,
+      "is_unsigned": false,
+      "foreign_key": {
+        "table": "SpellVisual",
+        "column": "ID"
+      }
+    },
+    "SpellIconID": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false,
+      "foreign_key": {
+        "table": "SpellIcon",
+        "column": "ID"
+      }
+    },
+    "ActiveIconID": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false,
+      "foreign_key": {
+        "table": "SpellIcon",
+        "column": "ID"
+      }
+    },
+    "SpellPriority": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "Name_lang": {
+      "type": "locstring",
+      "description": ""
+    },
+    "NameSubtext_lang": {
+      "type": "locstring",
+      "description": ""
+    },
+    "Description_lang": {
+      "type": "locstring",
+      "description": ""
+    },
+    "AuraDescription_lang": {
+      "type": "locstring",
+      "description": ""
+    },
+    "ManaCostPct": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "StartRecoveryCategory": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "StartRecoveryTime": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "MaxTargetLevel": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "SpellClassSet": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "SpellClassMask": {
+      "type": "int",
+      "description": "",
+      "array_size": 3,
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "MaxTargets": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "DefenseType": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "PreventionType": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "StanceBarOrder": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "EffectChainAmplitude": {
+      "type": "float",
+      "description": "",
+      "array_size": 3
+    },
+    "MinFactionID": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false,
+      "foreign_key": {
+        "table": "Faction",
+        "column": "ID"
+      }
+    },
+    "MinReputation": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "RequiredAuraVision": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "RequiredTotemCategoryID": {
+      "type": "int",
+      "description": "",
+      "array_size": 2,
+      "int_width": 32,
+      "is_unsigned": false,
+      "foreign_key": {
+        "table": "TotemCategory",
+        "column": "ID"
+      }
+    },
+    "RequiredAreasID": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false,
+      "foreign_key": {
+        "table": "AreaGroup",
+        "column": "ID"
+      }
+    },
+    "SchoolMask": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "RuneCostID": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false,
+      "foreign_key": {
+        "table": "SpellRuneCost",
+        "column": "ID"
+      }
+    },
+    "SpellMissileID": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false,
+      "foreign_key": {
+        "table": "SpellMissile",
+        "column": "ID"
+      }
+    },
+    "PowerDisplayID": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false,
+      "foreign_key": {
+        "table": "PowerDisplay",
+        "column": "ID"
+      }
+    },
+    "EffectBonusCoefficient": {
+      "type": "float",
+      "description": "",
+      "array_size": 3
+    },
+    "DescriptionVariablesID": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false,
+      "foreign_key": {
+        "table": "SpellDescriptionVariables",
+        "column": "ID"
+      }
+    },
+    "Difficulty": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    }
+  },
+  "field_order": [
+    "ID",
+    "Category",
+    "DispelType",
+    "Mechanic",
+    "Attributes",
+    "AttributesEx",
+    "AttributesExB",
+    "AttributesExC",
+    "AttributesExD",
+    "AttributesExE",
+    "AttributesExF",
+    "AttributesExG",
+    "ShapeshiftMask",
+    "ShapeshiftExclude",
+    "Targets",
+    "TargetCreatureType",
+    "RequiresSpellFocus",
+    "FacingCasterFlags",
+    "CasterAuraState",
+    "TargetAuraState",
+    "ExcludeCasterAuraState",
+    "ExcludeTargetAuraState",
+    "CasterAuraSpell",
+    "TargetAuraSpell",
+    "ExcludeCasterAuraSpell",
+    "ExcludeTargetAuraSpell",
+    "CastingTimeIndex",
+    "RecoveryTime",
+    "CategoryRecoveryTime",
+    "InterruptFlags",
+    "AuraInterruptFlags",
+    "ChannelInterruptFlags",
+    "ProcTypeMask",
+    "ProcChance",
+    "ProcCharges",
+    "MaxLevel",
+    "BaseLevel",
+    "SpellLevel",
+    "DurationIndex",
+    "PowerType",
+    "ManaCost",
+    "ManaCostPerLevel",
+    "ManaPerSecond",
+    "ManaPerSecondPerLevel",
+    "RangeIndex",
+    "Speed",
+    "ModalNextSpell",
+    "CumulativeAura",
+    "Totem",
+    "Reagent",
+    "ReagentCount",
+    "EquippedItemClass",
+    "EquippedItemSubclass",
+    "EquippedItemInvTypes",
+    "Effect",
+    "EffectDieSides",
+    "EffectRealPointsPerLevel",
+    "EffectBasePoints",
+    "EffectMechanic",
+    "ImplicitTargetA",
+    "ImplicitTargetB",
+    "EffectRadiusIndex",
+    "EffectAura",
+    "EffectAuraPeriod",
+    "EffectAmplitude",
+    "EffectChainTargets",
+    "EffectItemType",
+    "EffectMiscValue",
+    "EffectMiscValueB",
+    "EffectTriggerSpell",
+    "EffectPointsPerCombo",
+    "EffectSpellClassMaskA",
+    "EffectSpellClassMaskB",
+    "EffectSpellClassMaskC",
+    "SpellVisualID",
+    "SpellIconID",
+    "ActiveIconID",
+    "SpellPriority",
+    "Name_lang",
+    "NameSubtext_lang",
+    "Description_lang",
+    "AuraDescription_lang",
+    "ManaCostPct",
+    "StartRecoveryCategory",
+    "StartRecoveryTime",
+    "MaxTargetLevel",
+    "SpellClassSet",
+    "SpellClassMask",
+    "MaxTargets",
+    "DefenseType",
+    "PreventionType",
+    "StanceBarOrder",
+    "EffectChainAmplitude",
+    "MinFactionID",
+    "MinReputation",
+    "RequiredAuraVision",
+    "RequiredTotemCategoryID",
+    "RequiredAreasID",
+    "SchoolMask",
+    "RuneCostID",
+    "SpellMissileID",
+    "PowerDisplayID",
+    "EffectBonusCoefficient",
+    "DescriptionVariablesID",
+    "Difficulty"
+  ]
+}

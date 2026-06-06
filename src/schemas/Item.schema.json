@@ -1,0 +1,80 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Item Schema",
+  "description": "魔兽世界 Item.dbc 字段定义 (版本 3.3.5.12340)",
+  "source": "https://github.com/wowdev/WoWDBDefs",
+  "table_name": "Item",
+  "version": "3.3.5.12340",
+  "type": "object",
+  "properties": {
+    "ID": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false,
+      "annotation": [
+        "id"
+      ]
+    },
+    "ClassID": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false,
+      "foreign_key": {
+        "table": "ItemClass",
+        "column": "ClassID"
+      }
+    },
+    "SubclassID": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "Sound_override_subclassID": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "Material": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false,
+      "foreign_key": {
+        "table": "Material",
+        "column": "ID"
+      }
+    },
+    "DisplayInfoID": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "InventoryType": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "SheatheType": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    }
+  },
+  "field_order": [
+    "ID",
+    "ClassID",
+    "SubclassID",
+    "Sound_override_subclassID",
+    "Material",
+    "DisplayInfoID",
+    "InventoryType",
+    "SheatheType"
+  ]
+}

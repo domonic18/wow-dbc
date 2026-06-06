@@ -1,0 +1,128 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Achievement Schema",
+  "description": "魔兽世界 Achievement.dbc 字段定义 (版本 3.3.5.12340)",
+  "source": "https://github.com/wowdev/WoWDBDefs",
+  "table_name": "Achievement",
+  "version": "3.3.5.12340",
+  "type": "object",
+  "properties": {
+    "ID": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false,
+      "annotation": [
+        "id"
+      ]
+    },
+    "Faction": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "Instance_ID": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false,
+      "foreign_key": {
+        "table": "Map",
+        "column": "ID"
+      }
+    },
+    "Supercedes": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false,
+      "foreign_key": {
+        "table": "Achievement",
+        "column": "ID"
+      }
+    },
+    "Title_lang": {
+      "type": "locstring",
+      "description": ""
+    },
+    "Description_lang": {
+      "type": "locstring",
+      "description": ""
+    },
+    "Category": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false,
+      "foreign_key": {
+        "table": "Achievement_Category",
+        "column": "ID"
+      }
+    },
+    "Points": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "Ui_order": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "Flags": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "IconID": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false,
+      "foreign_key": {
+        "table": "SpellIcon",
+        "column": "ID"
+      }
+    },
+    "Reward_lang": {
+      "type": "locstring",
+      "description": ""
+    },
+    "Minimum_criteria": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false
+    },
+    "Shares_criteria": {
+      "type": "int",
+      "description": "",
+      "int_width": 32,
+      "is_unsigned": false,
+      "foreign_key": {
+        "table": "Achievement",
+        "column": "ID"
+      }
+    }
+  },
+  "field_order": [
+    "ID",
+    "Faction",
+    "Instance_ID",
+    "Supercedes",
+    "Title_lang",
+    "Description_lang",
+    "Category",
+    "Points",
+    "Ui_order",
+    "Flags",
+    "IconID",
+    "Reward_lang",
+    "Minimum_criteria",
+    "Shares_criteria"
+  ]
+}
