@@ -1,0 +1,3 @@
+[submodule "tools/wow-dbc-tool"]
+	path = tools/wow-dbc-tool
+	url = https://github.com/domonic18/wow-dbc-tool.git
