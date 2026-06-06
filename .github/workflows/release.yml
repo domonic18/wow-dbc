@@ -1,0 +1,145 @@
+name: Build and Release
+
+on:
+  push:
+    branches: [main, master]
+    tags: ['v*']
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  # ============================================================
+  # Job 1: 校验阶段（PR时运行）
+  # ============================================================
+  validate:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate CSV format
+        run: |
+          echo "=== CSV格式校验 ==="
+          # TODO: 接入 csv-to-dbc/validate.py 进行字段校验
+          # python tools/csv-to-dbc/validate.py --all
+          echo "CSV校验通过（待接入转换工具后启用完整校验）"
+
+      - name: Check assets-manifest.json
+        run: |
+          echo "=== 资源清单校验 ==="
+          python -m json.tool assets-manifest.json > /dev/null && echo "assets-manifest.json 格式正确"
+
+  # ============================================================
+  # Job 2: 构建阶段（push到main/tag时运行）
+  # ============================================================
+  build:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # --- 阶段A: 构建DBC（待接入转换工具后启用） ---
+      # - name: Setup Python
+      #   uses: actions/setup-python@v5
+      #   with:
+      #     python-version: '3.11'
+      #
+      # - name: Install dependencies
+      #   run: pip install -r tools/csv-to-dbc/requirements.txt
+      #
+      # - name: Build DBC files
+      #   run: python tools/csv-to-dbc/converter.py --all
+
+      - name: Placeholder - Build DBC
+        run: |
+          echo "=== DBC构建（暂不可用）==="
+          echo "TODO: 接入 csv-to-dbc 转换工具后，自动从 src/csv/ 生成 build/DBFilesClient/*.dbc"
+          mkdir -p build/DBFilesClient
+
+      # --- 阶段B: 打包资源（仅在仓库包含资源时执行） ---
+      # 注意：creature/ 和 interface/ 已被 .gitignore 排除
+      # 如果仓库本身不包含这些资源，此步骤不会生成有效包
+      - name: Pack creature assets
+        run: |
+          if [ -d "creature" ] && [ "$(ls -A creature)" ]; then
+            echo "=== 打包坐骑模型资源 ==="
+            zip -r creature-${{ github.ref_name }}.zip creature/ \
+              -x "*.git*" -x "*.tmp" -x "*.bak"
+            echo "creature资源打包完成"
+          else
+            echo "creature/ 目录不存在或为空，跳过打包"
+          fi
+
+      - name: Pack interface assets
+        run: |
+          if [ -d "interface" ] && [ "$(ls -A interface)" ]; then
+            echo "=== 打包图标资源 ==="
+            zip -r interface-${{ github.ref_name }}.zip interface/ \
+              -x "*.git*" -x "*.tmp" -x "*.bak"
+            echo "interface资源打包完成"
+          else
+            echo "interface/ 目录不存在或为空，跳过打包"
+          fi
+
+      # --- 阶段C: 生成校验文件 ---
+      - name: Generate checksums
+        run: |
+          if ls *.zip 1> /dev/null 2>&1; then
+            echo "=== 生成SHA256校验文件 ==="
+            sha256sum *.zip > assets-${{ github.ref_name }}.sha256
+            cat assets-${{ github.ref_name }}.sha256
+          fi
+
+      # --- 阶段D: 上传构建产物 ---
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: patch-assets-${{ github.ref_name }}
+          path: |
+            build/DBFilesClient/
+            *.zip
+            *.sha256
+          retention-days: 30
+
+  # ============================================================
+  # Job 3: 发布阶段（仅打tag时运行）
+  # ============================================================
+  release:
+    runs-on: ubuntu-latest
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/v')
+    permissions:
+      contents: write
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: patch-assets-${{ github.ref_name }}
+          path: dist/
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: dist/*
+          generate_release_notes: true
+          body: |
+            ## 补丁资源包
+
+            本Release包含以下资源（如有）：
+            - `creature-*.zip` — 自定义坐骑与生物模型资源
+            - `interface-*.zip` — 界面图标资源
+            - `*.sha256` — 文件校验和
+
+            ### 使用方法
+            1. 下载对应版本的 zip 文件
+            2. 解压到项目根目录（与 `src/` 同级）
+            3. `creature/` 和 `interface/` 目录会被 `.gitignore` 自动排除，不影响Git工作
+
+            ### 校验
+            ```bash
+            sha256sum -c assets-*.sha256
+            ```
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

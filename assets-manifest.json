@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "last_updated": "2026-06-06",
+  "project": {
+    "name": "WoW DBC Patch Project - Assets",
+    "description": "坐骑模型与图标资源清单（不纳入Git仓库，通过Release/网盘分发）"
+  },
+  "assets": {
+    "creature": {
+      "description": "自定义坐骑与生物模型资源",
+      "local_path": "creature/",
+      "total_size_mb": 802,
+      "file_count": 3380,
+      "file_types": {
+        "blp": 1609,
+        "anim": 823,
+        "skin": 690,
+        "m2": 190,
+        "M2": 41,
+        "BLP": 18,
+        "phys": 9
+      },
+      "mount_count": 170,
+      "note": "包含约170种自定义坐骑模型文件",
+      "download": {
+        "github_release": "https://github.com/<username>/<repo>/releases/latest",
+        "baidu_pan": null,
+        "quark": null
+      },
+      "packaging": {
+        "archive_name": "creature-{version}.zip",
+        "compression": "zip",
+        "include_checksum": true
+      }
+    },
+    "interface": {
+      "description": "界面图标资源",
+      "local_path": "interface/",
+      "total_size_mb": 181,
+      "file_count": 25845,
+      "file_types": {
+        "blp": 25838,
+        "txt": 2,
+        "skin": 2,
+        "m2": 2,
+        "jpg": 1
+      },
+      "note": "包含约25,800个图标文件及icon_inv.txt/icon_spell.txt索引",
+      "download": {
+        "github_release": "https://github.com/<username>/<repo>/releases/latest",
+        "baidu_pan": null,
+        "quark": null
+      },
+      "packaging": {
+        "archive_name": "interface-{version}.zip",
+        "compression": "zip",
+        "include_checksum": true
+      }
+    }
+  },
+  "checksums": {
+    "method": "sha256",
+    "file": "assets-{version}.sha256"
+  },
+  "usage": {
+    "local_setup": "将下载的creature/和interface/解压到项目根目录，与src/、tools/同级",
+    "git_ignore": "这些目录已被.gitignore排除，不会进入Git版本控制"
+  }
+}
