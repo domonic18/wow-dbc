@@ -3,7 +3,7 @@
 """
 generate-schemas.py
 从 WoWDBDefs 的 .dbd 定义文件中提取指定版本的字段结构，
-生成 src/schemas/*.json 供CSV编辑和DBC转换工具使用。
+生成 src/schemas/*.json 供 DBC 编辑和 CSV 导出工具使用。
 
 用法:
     python script/generate-schemas.py
@@ -32,7 +32,7 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).parent.parent
 DBD_DIR = PROJECT_ROOT / "third-party" / "WoWDBDefs" / "definitions"
 SCHEMAS_DIR = PROJECT_ROOT / "src" / "schemas"
-CSV_DIR = PROJECT_ROOT / "src" / "csv"
+DBC_DIR = PROJECT_ROOT / "src" / "dbc"
 
 # 默认目标版本（WotLK 3.3.5）
 DEFAULT_TARGET_VERSION = "3.3.5.12340"
@@ -334,11 +334,11 @@ def generate_schema(table_name: str, target_version: str = DEFAULT_TARGET_VERSIO
 
 
 def get_project_tables() -> list:
-    """获取项目中实际使用的表名（从CSV文件名推断）"""
+    """获取项目中实际使用的表名（从DBC文件名推断）"""
     tables = []
-    if CSV_DIR.exists():
-        for csv_file in sorted(CSV_DIR.glob("*.csv")):
-            tables.append(csv_file.stem)
+    if DBC_DIR.exists():
+        for dbc_file in sorted(DBC_DIR.glob("*.dbc")):
+            tables.append(dbc_file.stem)
     return tables
 
 
@@ -353,7 +353,7 @@ def main():
     )
     parser.add_argument(
         "--table",
-        help="仅生成指定表的schema（默认: 项目CSV目录下的所有表）",
+        help="仅生成指定表的schema（默认: 项目DBC目录下的所有表）",
     )
     parser.add_argument(
         "--output",
@@ -389,7 +389,7 @@ def main():
     else:
         tables = get_project_tables()
         if not tables:
-            print(f"⚠️  未在 {CSV_DIR} 找到CSV文件，请指定 --table 参数")
+            print(f"⚠️  未在 {DBC_DIR} 找到DBC文件，请指定 --table 参数")
             sys.exit(1)
 
     print(f"目标版本: {args.version}")

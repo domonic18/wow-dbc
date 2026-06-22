@@ -63,7 +63,7 @@
     "file": "assets-{version}.sha256"
   },
   "usage": {
-    "local_setup": "将下载的creature/和interface/解压到项目根目录，与src/、tools/同级",
-    "git_ignore": "这些目录已被.gitignore排除，不会进入Git版本控制"
+    "local_setup": "将下载的 creature/ 和 interface/ 解压到项目根目录，与 src/、export/ 同级",
+    "git_ignore": "这些目录以及 export/ 已被 .gitignore 排除，不会进入Git版本控制"
   }
 }

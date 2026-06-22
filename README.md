@@ -16,23 +16,26 @@
 
 | 内容 | 是否入仓 | 说明 |
 |:---|:---:|:---|
-| `src/csv/*.csv` | ✅ | DBC源数据（核心资产） |
+| `src/dbc/*.dbc` | ✅ | DBC源数据（核心资产） |
 | `tools/` | ✅ | 构建工具与脚本 |
-| `docs/` | ✅ | 项目文档 |
 | `assets/creature/` | ❌ | 坐骑模型资源（~802MB），通过Release/网盘分发 |
 | `assets/interface/` | ❌ | 图标资源（~181MB），通过Release/网盘分发 |
-| `build/DBFilesClient/*.dbc` | ❌ | DBC构建产物，通过CI自动生成 |
+| `export/csv/*.csv` | ❌ | CSV导出文件，用于查看和第三方系统 |
 | `*.mpq` | ❌ | 最终补丁包，通过Release分发 |
 
 ## 目录结构
 
 ```
 patch_project_lokta/
-├── 📁 .github/workflows/      # GitHub Actions CI/CD 工作流
-├── 📁 docs/                   # 项目文档
-│   └── dbc-management-proposal.md
 ├── 📁 src/
-│   └── 📁 csv/                # CSV源数据
+│   └── 📁 dbc/                # DBC源数据
+│       ├── Achievement.dbc
+│       ├── CreatureDisplayInfo.dbc
+│       ├── Item.dbc
+│       ├── Spell.dbc
+│       └── ...
+├── 📁 export/
+│   └── 📁 csv/                # CSV导出文件（由DBC生成）
 │       ├── Achievement.csv
 │       ├── CreatureDisplayInfo.csv
 │       ├── Item.csv
@@ -77,24 +80,27 @@ unzip interface-v1.0.0.zip
 
 ```
 patch_project_lokta/
-├── 📁 src/csv/                  # CSV源数据 ← Git管理
+├── 📁 src/
+│   ├── 📁 dbc/                  # DBC源数据 ← Git管理
+│   └── 📁 schemas/              # DBC表结构定义 ← Git管理
+├── 📁 export/
+│   └── 📁 csv/                  # CSV导出文件 ← 从DBC生成，Git忽略
 ├── 📁 assets/
 │   ├── 📁 creature/             # 坐骑模型 ← 从Release/网盘获取
 │   └── 📁 interface/            # 图标资源 ← 从Release/网盘获取
-└── 📁 build/                    # 构建输出（运行时生成）
-    └── DBFilesClient/           # 生成的DBC文件
+└── 📄 README.md                 # 本文件
 ```
 
-### 4. 构建DBC（待接入转换工具）
+### 4. 导出CSV（待接入转换工具）
 
 ```bash
 # 安装Python依赖
-pip install -r tools/csv-to-dbc/requirements.txt
+pip install -r tools/dbc-to-csv/requirements.txt
 
-# 构建所有DBC
-python tools/csv-to-dbc/converter.py --all
+# 从DBC导出所有CSV
+python tools/dbc-to-csv/exporter.py --all
 
-# 输出到 build/DBFilesClient/
+# 输出到 export/csv/
 ```
 
 ## 资源清单
@@ -121,13 +127,9 @@ python tools/csv-to-dbc/converter.py --all
 
 1. Fork 本仓库
 2. 创建特性分支：`git checkout -b feature/xxx`
-3. 编辑 `src/csv/*.csv` 文件
+3. 编辑 `src/dbc/*.dbc` 文件（使用 DBC 编辑工具，或导出到 CSV 编辑后再写回 DBC）
 4. 提交变更（遵循 Conventional Commits 规范）
 5. 发起 Pull Request
-
-## 技术文档
-
-- [`docs/dbc-management-proposal.md`](./docs/dbc-management-proposal.md) — DBC文件管理方案
 
 ## 许可证
 
