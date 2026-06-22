@@ -23,29 +23,6 @@
 | `export/csv/*.csv` | ❌ | CSV导出文件，用于查看和第三方系统 |
 | `*.mpq` | ❌ | 最终补丁包，通过Release分发 |
 
-## 目录结构
-
-```
-patch_project_lokta/
-├── 📁 src/
-│   └── 📁 dbc/                # DBC源数据
-│       ├── Achievement.dbc
-│       ├── CreatureDisplayInfo.dbc
-│       ├── Item.dbc
-│       ├── Spell.dbc
-│       └── ...
-├── 📁 export/
-│   └── 📁 csv/                # CSV导出文件（由DBC生成）
-│       ├── Achievement.csv
-│       ├── CreatureDisplayInfo.csv
-│       ├── Item.csv
-│       ├── Spell.csv
-│       └── ...
-├── 📄 assets-manifest.json    # 资源清单（版本、校验和、下载链接）
-├── 📄 .gitignore              # Git忽略规则
-└── 📄 README.md               # 本文件
-```
-
 ## 快速开始
 
 ### 1. 克隆源码仓库
@@ -59,19 +36,7 @@ cd patch_project_lokta
 
 由于 `assets/creature/` 和 `assets/interface/` 为大型二进制资源，**不纳入Git管理**，请通过以下方式获取：
 
-#### 方式A：GitHub Release（推荐，海外网络）
-
-访问 [Releases页面](https://github.com/<username>/<repo>/releases)，下载对应版本的：
-- `creature-v*.zip` — 坐骑模型资源
-- `interface-v*.zip` — 图标资源
-
-解压到项目根目录：
-```bash
-unzip creature-v1.0.0.zip
-unzip interface-v1.0.0.zip
-```
-
-#### 方式B：国内网盘（推荐，国内网络）
+#### 国内网盘（推荐，国内网络）
 
 - **百度网盘**：`https://pan.baidu.com/s/xxxx`（待补充）
 - **夸克网盘**：`https://pan.quark.cn/xxxx`（待补充）
@@ -79,29 +44,38 @@ unzip interface-v1.0.0.zip
 ### 3. 本地目录结构（完整）
 
 ```
-patch_project_lokta/
+wow-dbc/
 ├── 📁 src/
-│   ├── 📁 dbc/                  # DBC源数据 ← Git管理
-│   └── 📁 schemas/              # DBC表结构定义 ← Git管理
+│   └── 📁 dbc/                  # DBC源数据 ← Git管理
 ├── 📁 export/
 │   └── 📁 csv/                  # CSV导出文件 ← 从DBC生成，Git忽略
+├── 📁 tools/
+│   └── 📁 wow-dbc-tool/         # DBC加工工具（子模块）
 ├── 📁 assets/
 │   ├── 📁 creature/             # 坐骑模型 ← 从Release/网盘获取
 │   └── 📁 interface/            # 图标资源 ← 从Release/网盘获取
 └── 📄 README.md                 # 本文件
 ```
 
-### 4. 导出CSV（待接入转换工具）
+### 4. 使用 wow-dbc-tool 加工 DBC
+
+本仓库只维护 DBC 源文件，所有 DBC 加工处理（Schema 生成、CSV 导出/回写、Diff 等）由 `tools/wow-dbc-tool` 负责。
 
 ```bash
-# 安装Python依赖
-pip install -r tools/dbc-to-csv/requirements.txt
+# 进入工具目录
+cd tools/wow-dbc-tool
 
-# 从DBC导出所有CSV
-python tools/dbc-to-csv/exporter.py --all
+# 使用 uv 安装依赖并运行
+uv sync
 
-# 输出到 export/csv/
+# 从 DBC 导出 CSV
+uv run wow-dbc-tool export --input ../../src/dbc --output ../../export/csv
+
+# 生成 Schema
+uv run wow-dbc-tool schema generate --dbd-dir third-party/WoWDBDefs/definitions --output schemas
 ```
+
+具体用法请参阅 `tools/wow-dbc-tool/README.md`。
 
 ## 资源清单
 
@@ -122,14 +96,6 @@ python tools/dbc-to-csv/exporter.py --all
 - **v1.x** — 修复屠魔者的破邪尖啸者在太阳之井可以飞行的问题
 - **v1.x** — 修复狡狐魔使在海加尔山可以飞行的问题
 - **v1.x** — 增加商栈币的候选价格列表
-
-## 贡献指南
-
-1. Fork 本仓库
-2. 创建特性分支：`git checkout -b feature/xxx`
-3. 编辑 `src/dbc/*.dbc` 文件（使用 DBC 编辑工具，或导出到 CSV 编辑后再写回 DBC）
-4. 提交变更（遵循 Conventional Commits 规范）
-5. 发起 Pull Request
 
 ## 许可证
 
