@@ -2,3 +2,9 @@ patch-zhCN-5.MPQ
 /assets/creature
 /assets/interface
 /.vscode
+
+# CSV 导出文件（由 src/dbc/ 中的 DBC 源文件生成）
+/export/
+
+# 历史路径兼容：旧构建输出目录已不再使用
+/build/
